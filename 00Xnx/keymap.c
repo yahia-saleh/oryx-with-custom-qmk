@@ -147,6 +147,20 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // Turn off for these to eliminate false positives
+        case LGUI_T(KC_A):
+        case LALT_T(KC_S):
+        case LCTL_T(KC_D):
+        case RCTL_T(KC_K):
+        case RALT_T(KC_L):
+        case RGUI_T(KC_QUOT):
+            return false;
+        default:
+            return true;
+    }
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
